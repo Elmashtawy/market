@@ -18,7 +18,8 @@ class CreateOrdersTable extends Migration
             $table->integer('tax');
             $table->integer('shiping');
             $table->integer('total_amount');
-            $table->unsignedBigInteger('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

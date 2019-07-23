@@ -13,7 +13,7 @@ class CreatePorductBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('porduct_brands', function (Blueprint $table) {
+        Schema::create('product_brands', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('brand_id');
             $table->timestamps();
