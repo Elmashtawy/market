@@ -5,10 +5,8 @@ namespace App\Http\Controllers\api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Http\Resources\IndexCategoryResource;
-use App\Http\Resources\IndexProductResource;
-use App\Http\Resources\IndexBestResource;
-
+use App\Http\Resources\CategoriesResource;
+use App\Http\Resources\ProductsResource;
 use App\Category;
 use App\Product;
 
@@ -25,15 +23,17 @@ class IndexController extends Controller
 
     {
         try{
+            // return (new ProductsByProductIDResource($id))->response()->setStatusCode(220);
 
           $latest_Category = Category::orderBy('id', 'desc')->limit(5)->get();
           $latest_Product  = Product::orderBy('id', 'desc')->limit(5)->get();
           $Best_Selling    = Product::orderBy('selling', 'desc')->limit(5)->get();
+
           
-          $cat  = IndexCategoryResource::collection($latest_Category);
-          $pro  = IndexProductResource::collection($latest_Product);
-          $best = IndexBestResource::collection($Best_Selling);
           
+          $cat  = CategoriesResource::collection($latest_Category);
+          $pro  = ProductsResource::collection($latest_Product);
+          $best = ProductsResource::collection($Best_Selling);
            $response['data'] = [ 'latest_Category'=>$cat,
                                  'latest_Product'=>$pro,
                                  'Best_Selling'=>$best ] ; 

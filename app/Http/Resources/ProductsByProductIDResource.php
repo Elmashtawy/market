@@ -16,7 +16,7 @@ class ProductsByProductIDResource extends JsonResource
     {
         // return parent::toArray($request);
            return [
-
+            'SingleProduct' => [
         'id' => $this->id,
         'name' => $this->name,
         'description' => $this->description,
@@ -28,9 +28,20 @@ class ProductsByProductIDResource extends JsonResource
         'expire_offer' => $this->expire_offer,
         'selling' => $this->selling,
         'created_at' => $this->created_at,
-      
+            ]
         
         
+        ];
+    }
+    
+    public function with($request)
+    {
+        
+        return [
+            'meta' => [
+                'Status' => 'success',
+                'Error' => 'No Errors Found',
+            ],
         ];
     }
 }

@@ -33,4 +33,17 @@ class ProductsResource extends JsonResource
         
         ];
     }
+
+    public function with($request)
+    {
+        
+        return [
+            'metass' => [
+                'Status' => 'success',
+                'Error' => 'No Errors Found',
+            ],
+        ];
+    }
+
+    
 }

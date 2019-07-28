@@ -18,12 +18,8 @@ class CategoryController extends Controller
     {
         try{
 
-          $All_Categoty  = CategoriesResource::collection(Category::All());
-          
-           $response['data'] = [ 'All_Categoty'=>$All_Categoty];
-           $response['error']= "Not Found Error";                                  
-          
-             return response($response,200);
+            return (CategoriesResource::collection(Category::paginate(5)))->response()->setStatusCode(200);          
+         
         }catch(\Exception $e){
 
                $response = [

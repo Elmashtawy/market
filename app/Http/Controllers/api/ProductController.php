@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\api;
+use App\Http\requsests;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductsResource;
-use App\Http\Resources\ProductsByCategoryIDResource;
 use App\Http\Resources\ProductsByProductIDResource;
-use App\Http\Resources\IndexBestResource;
 
 use App\Product;
 class ProductController extends Controller
@@ -51,7 +50,7 @@ class ProductController extends Controller
         
        try{
 
-         $Product_by_BestSelling  = IndexBestResource::collection(Product::orderBy('selling', 'desc')->get());
+         $Product_by_BestSelling  = ProductsResource::collection(Product::orderBy('selling', 'desc')->paginate(5));
           
            $response['data'] = [ 'Product_by_BestSelling'=>$Product_by_BestSelling];
            $response['error']= "Not Found Error";                                  
@@ -82,7 +81,7 @@ class ProductController extends Controller
          try{
 
           
-           $Product_By_CatID  = ProductsByCategoryIDResource::collection(Product::where('category_id',$catId)->get());
+           $Product_By_CatID  = ProductsResource::collection(Product::where('category_id',$catId)->get());
           
            $response['data'] = [ 'Product_By_CatID'=>$Product_By_CatID];
            $response['error']= "Not Found Error";                                  
@@ -115,12 +114,9 @@ class ProductController extends Controller
          try{
 
           
-           $Product_By_ProID  = new ProductsByProductIDResource($id);
+           return (new ProductsByProductIDResource($id))->response()->setStatusCode(200);
           
-           $response['data'] = [ 'Product_By_ProID'=>$Product_By_ProID];
-           $response['error']= "Not Found Error";                                  
           
-             return response($response,200);
         }catch(\Exception $e){
 
                $response = [
