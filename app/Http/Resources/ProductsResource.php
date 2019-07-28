@@ -18,6 +18,7 @@ class ProductsResource extends JsonResource
            return [
 
         'id' => $this->id,
+        'category_id' => $this->category_id,
         'name' => $this->name,
         'description' => $this->description,
         'photo' => $this->photo,
@@ -38,10 +39,10 @@ class ProductsResource extends JsonResource
     {
         
         return [
-            'metass' => [
+            
                 'Status' => 'success',
                 'Error' => 'No Errors Found',
-            ],
+            
         ];
     }
 

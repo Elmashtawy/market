@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoriesResource;
+use App\Http\Resources\CategoriesCollection;
 use App\Category;
 class CategoryController extends Controller
 {
@@ -18,7 +19,7 @@ class CategoryController extends Controller
     {
         try{
 
-            return (CategoriesResource::collection(Category::paginate(5)))->response()->setStatusCode(200);          
+            return (new CategoriesCollection(Category::paginate(5)))->response()->setStatusCode(200);          
          
         }catch(\Exception $e){
 

@@ -6,6 +6,9 @@ use App\Http\requsests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductsResource;
+use App\Http\Resources\ProductsCollection;
+use App\Http\Resources\BestProductsCollection;
+use App\Http\Resources\ProductsByCategoriesCollection;
 use App\Http\Resources\ProductsByProductIDResource;
 
 use App\Product;
@@ -20,12 +23,8 @@ class ProductController extends Controller
     {
        try{
 
-          $All_Product  = ProductsResource::collection(Product::All());
-          
-           $response['data'] = [ 'All_Product'=>$All_Product];
-           $response['error']= "Not Found Error";                                  
-          
-             return response($response,200);
+         return (new ProductsCollection(Product::paginate(5)))->response()->setStatusCode(200);   
+
         }catch(\Exception $e){
 
                $response = [
@@ -50,12 +49,9 @@ class ProductController extends Controller
         
        try{
 
-         $Product_by_BestSelling  = ProductsResource::collection(Product::orderBy('selling', 'desc')->paginate(5));
-          
-           $response['data'] = [ 'Product_by_BestSelling'=>$Product_by_BestSelling];
-           $response['error']= "Not Found Error";                                  
-          
-             return response($response,200);
+         return (new BestProductsCollection(Product::orderBy('selling', 'desc')->paginate(5)))->response()->setStatusCode(200);   
+                                  
+        
         }catch(\Exception $e){
 
                $response = [
@@ -80,13 +76,8 @@ class ProductController extends Controller
     {
          try{
 
-          
-           $Product_By_CatID  = ProductsResource::collection(Product::where('category_id',$catId)->get());
-          
-           $response['data'] = [ 'Product_By_CatID'=>$Product_By_CatID];
-           $response['error']= "Not Found Error";                                  
-          
-             return response($response,200);
+           return (new ProductsByCategoriesCollection(Product::where('category_id',$catId)->paginate(5)))->response()->setStatusCode(200);   
+           
         }catch(\Exception $e){
 
                $response = [

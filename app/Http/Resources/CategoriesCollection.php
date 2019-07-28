@@ -2,12 +2,12 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CategoriesResource extends JsonResource
+class CategoriesCollection extends ResourceCollection
 {
     /**
-     * Transform the resource into an array.
+     * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
@@ -15,14 +15,10 @@ class CategoriesResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
-
          return [
-        'id' => $this->id,
-        'name' => $this->name,
-        'description' => $this->description,
-        'link' => url('/products/'.$this->id),
-        
-        
+
+        'All_Category' => CategoriesResource::collection($this->collection),
+            
         ];
     }
 
@@ -30,10 +26,11 @@ class CategoriesResource extends JsonResource
     {
         
         return [
-            'meta' => [
+            
                 'Status' => 'success',
                 'Error' => 'No Errors Found',
-            ],
+            
         ];
     }
+
 }

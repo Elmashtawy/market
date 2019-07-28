@@ -23,17 +23,18 @@ class IndexController extends Controller
 
     {
         try{
-            // return (new ProductsByProductIDResource($id))->response()->setStatusCode(220);
+          
 
           $latest_Category = Category::orderBy('id', 'desc')->limit(5)->get();
           $latest_Product  = Product::orderBy('id', 'desc')->limit(5)->get();
           $Best_Selling    = Product::orderBy('selling', 'desc')->limit(5)->get();
 
           
-          
           $cat  = CategoriesResource::collection($latest_Category);
           $pro  = ProductsResource::collection($latest_Product);
           $best = ProductsResource::collection($Best_Selling);
+
+
            $response['data'] = [ 'latest_Category'=>$cat,
                                  'latest_Product'=>$pro,
                                  'Best_Selling'=>$best ] ; 
@@ -41,8 +42,10 @@ class IndexController extends Controller
            $response['See_All_Products']= url('products');                                  
            $response['See_All_BestSelling']= url('BestSelling');                               
            $response['error']= "Not Found Error";                                  
+           $response['Status']= "Success";                                  
           
              return response($response,200);
+
         }catch(\Exception $e){
 
                $response = [
