@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Api Routes
+Route::get('/','api\IndexController@index' );
+Route::get('/categories','api\CategoryController@index' );
+Route::get('/products','api\ProductController@index' );
