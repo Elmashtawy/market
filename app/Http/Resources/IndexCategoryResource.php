@@ -21,10 +21,10 @@ class IndexCategoryResource extends JsonResource
         return [
         'name' => $this->name,
         'description' => $this->description,
-        'link' => url('category/'.$this->id) ,
+        'link' => url('/products/'.$this->id) ,
         
         ];
     }
 
-   
+
 }

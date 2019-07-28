@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductsResource extends JsonResource
+class ProductsByProductIDResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -29,7 +29,7 @@ class ProductsResource extends JsonResource
         'selling' => $this->selling,
         'created_at' => $this->created_at,
       
-        'link' => url('/product/'.$this->id) ,
+        
         
         ];
     }

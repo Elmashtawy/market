@@ -5,6 +5,10 @@ namespace App\Http\Controllers\api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductsResource;
+use App\Http\Resources\ProductsByCategoryIDResource;
+use App\Http\Resources\ProductsByProductIDResource;
+use App\Http\Resources\IndexBestResource;
+
 use App\Product;
 class ProductController extends Controller
 {
@@ -22,7 +26,7 @@ class ProductController extends Controller
            $response['data'] = [ 'All_Product'=>$All_Product];
            $response['error']= "Not Found Error";                                  
           
-             return response()->json($response,200);
+             return response($response,200);
         }catch(\Exception $e){
 
                $response = [
@@ -32,10 +36,113 @@ class ProductController extends Controller
                   
                ];
          
-             return response()->json($response,404);
+             return response($response,404);
         }
 
     }
+ /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function BestSelling()
+    {
+
+        
+       try{
+
+         $Product_by_BestSelling  = IndexBestResource::collection(Product::orderBy('selling', 'desc')->get());
+          
+           $response['data'] = [ 'Product_by_BestSelling'=>$Product_by_BestSelling];
+           $response['error']= "Not Found Error";                                  
+          
+             return response($response,200);
+        }catch(\Exception $e){
+
+               $response = [
+
+                  'data'=>"Not found Data",
+                  'error'=>$e->getMessage(),
+                  
+               ];
+         
+             return response($response,404);
+        }
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_pro($catId)
+    {
+         try{
+
+          
+           $Product_By_CatID  = ProductsByCategoryIDResource::collection(Product::where('category_id',$catId)->get());
+          
+           $response['data'] = [ 'Product_By_CatID'=>$Product_By_CatID];
+           $response['error']= "Not Found Error";                                  
+          
+             return response($response,200);
+        }catch(\Exception $e){
+
+               $response = [
+
+                  'data'=>"Not found Data",
+                  'error'=>$e->getMessage(),
+                  
+               ];
+         
+             return response($response,404);
+        }
+
+
+
+    }
+ /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Product $id)
+    {
+        
+         try{
+
+          
+           $Product_By_ProID  = new ProductsByProductIDResource($id);
+          
+           $response['data'] = [ 'Product_By_ProID'=>$Product_By_ProID];
+           $response['error']= "Not Found Error";                                  
+          
+             return response($response,200);
+        }catch(\Exception $e){
+
+               $response = [
+
+                  'data'=>"Not found Data",
+                  'error'=>$e->getMessage(),
+                  
+               ];
+         
+             return response($response,404);
+        }
+
+
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
     /**
      * Show the form for creating a new resource.
@@ -57,24 +164,6 @@ class ProductController extends Controller
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //

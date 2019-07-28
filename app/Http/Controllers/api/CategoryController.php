@@ -23,7 +23,7 @@ class CategoryController extends Controller
            $response['data'] = [ 'All_Categoty'=>$All_Categoty];
            $response['error']= "Not Found Error";                                  
           
-             return response()->json($response,200);
+             return response($response,200);
         }catch(\Exception $e){
 
                $response = [
@@ -33,7 +33,7 @@ class CategoryController extends Controller
                   
                ];
          
-             return response()->json($response,404);
+             return response($response,404);
         }
 
     }

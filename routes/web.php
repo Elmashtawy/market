@@ -18,4 +18,10 @@
 // Api Routes
 Route::get('/','api\IndexController@index' );
 Route::get('/categories','api\CategoryController@index' );
+
 Route::get('/products','api\ProductController@index' );
+
+Route::get('/BestSelling','api\ProductController@BestSelling' );
+
+Route::get('/products/{catId}','api\ProductController@show_pro' );
+Route::get('/product/{id}','api\ProductController@show' );

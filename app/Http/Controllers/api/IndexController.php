@@ -36,13 +36,13 @@ class IndexController extends Controller
           
            $response['data'] = [ 'latest_Category'=>$cat,
                                  'latest_Product'=>$pro,
-                                 'Best_Selling'=>$Best_Selling ] ; 
+                                 'Best_Selling'=>$best ] ; 
            $response['See_All_Category']= url('categories');                        
            $response['See_All_Products']= url('products');                                  
-           $response['See_All_BestSelling']= url('asdf');                               
+           $response['See_All_BestSelling']= url('BestSelling');                               
            $response['error']= "Not Found Error";                                  
           
-             return response()->json($response,200);
+             return response($response,200);
         }catch(\Exception $e){
 
                $response = [
@@ -52,7 +52,7 @@ class IndexController extends Controller
                   
                ];
          
-             return response()->json($response,404);
+             return response($response,404);
         }
 
         
