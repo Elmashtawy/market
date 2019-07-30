@@ -28,6 +28,9 @@ class ProductsByProductIDResource extends JsonResource
         'expire_offer' => $this->expire_offer,
         'selling' => $this->selling,
         'created_at' => $this->created_at,
+        
+        'brands' => $this->brands,
+        
             ]
         
         

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class BestProductsCollection extends ResourceCollection
+class OrderCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -18,13 +18,12 @@ class BestProductsCollection extends ResourceCollection
 
         return [
 
-            'All_Best_Product' => ProductsResource::collection($this->collection),
+            'Orders' => OrderResource::collection($this->collection),
 
         ];
-
     }
 
-     public function with($request)
+    public function with($request)
     {
         
         return [
@@ -34,5 +33,4 @@ class BestProductsCollection extends ResourceCollection
             
         ];
     }
-    
 }

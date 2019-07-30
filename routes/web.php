@@ -25,3 +25,7 @@ Route::get('/BestSelling','api\ProductController@BestSelling' );
 
 Route::get('/products/{catId}','api\ProductController@show_pro' );
 Route::get('/product/{id}','api\ProductController@show' );
+
+Route::get('/orders/{userId}','api\OrderController@index');
+Route::get('/order/{id}','api\OrderController@show');
+Route::post('/order','api\ProductController@store');

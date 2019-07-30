@@ -9,5 +9,8 @@ $factory->define(OrderItem::class, function (Faker $faker) {
     return [
         'product_id' => rand(1,10),
         'order_id' => factory('App\Order')->create()->id,
+        'product_price' => $faker->randomDigitNotNull,
+        'quantity' => $faker->randomDigitNotNull,
+        'sub_total' => $faker->randomDigitNotNull,
     ];
 });

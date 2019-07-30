@@ -76,7 +76,7 @@ class ProductController extends Controller
     {
          try{
 
-           return (new ProductsByCategoriesCollection(Product::where('category_id',$catId)->paginate(5)))->response()->setStatusCode(200);   
+           return (new ProductsByCategoriesCollection(Product::where('category_id',$catId)->paginate(5)))->response()->setStatusCode(200);
            
         }catch(\Exception $e){
 
@@ -149,7 +149,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+/********************************************/
+        // Add this produt to the order items 
+/*******************************************/
+        
+
     }
     public function edit($id)
     {

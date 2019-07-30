@@ -10,4 +10,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\Category', 'category_id', 'id');
     }
+
+    public function brands()
+    {
+        return $this->belongsToMany('App\Brand', 'product_brands', 'product_id', 'brand_id');
+    }
+    
 }
