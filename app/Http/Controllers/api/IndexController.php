@@ -38,9 +38,9 @@ class IndexController extends Controller
            $response['data'] = [ 'latest_Category'=>$cat,
                                  'latest_Product'=>$pro,
                                  'Best_Selling'=>$best ] ; 
-           $response['See_All_Category']= url('categories');                        
-           $response['See_All_Products']= url('products');                                  
-           $response['See_All_BestSelling']= url('BestSelling');                               
+           $response['See_All_Category']= url('api/categories');                        
+           $response['See_All_Products']= url('api/products');                                  
+           $response['See_All_BestSelling']= url('api/BestSelling');                               
            $response['error']= "Not Found Error";                                  
            $response['Status']= "Success";                                  
           
