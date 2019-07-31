@@ -10,7 +10,9 @@ use App\Http\Resources\ProductsCollection;
 use App\Http\Resources\BestProductsCollection;
 use App\Http\Resources\ProductsByCategoriesCollection;
 use App\Http\Resources\ProductsByProductIDResource;
-
+use App\Http\Resources\CartResource;
+use App\Http\Resources\CartCollection;
+use App\Cart;
 use App\Product;
 class ProductController extends Controller
 {
@@ -147,15 +149,56 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store($pid)
+    { 
+        try{
+            $product = Product::where('id', $pid)->first();
+            $id = $product->id;
+            
+            $cart = new Cart;
+    
+            $cart->product_id = $id;
+            $cart->user_id = 1;
+            $cart->save();
+            
+            return redirect('api/showcart/1');
+            
 
-/********************************************/
-        // Add this produt to the order items 
-/*******************************************/
-        
+        }catch(\Exception $e){
+
+               $response = [
+
+                  'data'=>"Not found Data",
+                  'error'=>$e->getMessage(),
+                  
+               ];
+         
+             return response($response,404);
+        }
+
 
     }
+
+    public function showcart($userId){
+        try{
+
+            return $product = new CartCollection(Cart::where('user_id', 1)->with('product')->get()
+        
+        );
+        }catch(\Exception $e){
+
+            $response = [
+
+               'data'=>"Not found Data",
+               'error'=>$e->getMessage(),
+               
+            ];
+      
+          return response($response,404);
+     }
+
+    }
+
     public function edit($id)
     {
         //
@@ -179,8 +222,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($pavoitId)
     {
-        //
+        
+        $cartProduct = Cart::findOrFail($pavoitId);
+
+        $cartProduct->delete();
+
+        return redirect('api/showcart/1');
+
     }
 }

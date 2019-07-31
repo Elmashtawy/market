@@ -15,5 +15,9 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Brand', 'product_brands', 'product_id', 'brand_id');
     }
+
+    protected $fillable = [
+        'id', 'name', 'email', 'password',
+    ];
     
 }

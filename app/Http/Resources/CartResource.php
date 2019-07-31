@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoriesResource extends JsonResource
+class CartResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,14 +15,12 @@ class CategoriesResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
-
-         return [
-        'id' => $this->id,
-        'name' => $this->name,
-        'description' => $this->description,
-        'link' => url('api/products/'.$this->id),
-        
-        
+        return [
+            
+            'pivotId'=> $this->id,
+            'Delete'=> url('api/cart/delete/'.$this->id),
+            'productcart' => $this->product,
+            
         ];
     }
 
@@ -30,10 +28,12 @@ class CategoriesResource extends JsonResource
     {
         
         return [
-            'meta' => [
+            
                 'Status' => 'success',
                 'Error' => 'No Errors Found',
-            ],
+            
         ];
     }
+
+
 }

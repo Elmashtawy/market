@@ -30,7 +30,7 @@ class ProductsResource extends JsonResource
         'selling' => $this->selling,
         'created_at' => $this->created_at,
       
-        'link' => url('/product/'.$this->id) ,
+        'link' => url('api/product/'.$this->id) ,
         
         ];
     }

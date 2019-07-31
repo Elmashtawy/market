@@ -29,6 +29,8 @@ class ProductsByProductIDResource extends JsonResource
         'selling' => $this->selling,
         'created_at' => $this->created_at,
         
+        'Add To Cart' => url('api/cart/'.$this->id),
+
         'brands' => $this->brands,
         
             ]

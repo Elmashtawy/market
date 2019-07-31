@@ -23,7 +23,7 @@ class OrderResource extends JsonResource
             'total_amount' => $this->total_amount,
             'user_id' => $this->user_id,
             
-            'link' => url('/order/'.$this->id),
+            'link' => url('api/order/'.$this->id),
             
         ];
     }

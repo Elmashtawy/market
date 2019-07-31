@@ -2,12 +2,12 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CategoriesResource extends JsonResource
+class CartCollection extends ResourceCollection
 {
     /**
-     * Transform the resource into an array.
+     * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
@@ -15,25 +15,22 @@ class CategoriesResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
-
-         return [
-        'id' => $this->id,
-        'name' => $this->name,
-        'description' => $this->description,
-        'link' => url('api/products/'.$this->id),
-        
-        
+        return [
+            
+            'products' => CartResource::collection($this->collection),
+            
+            
         ];
     }
-
     public function with($request)
     {
         
         return [
-            'meta' => [
+            
                 'Status' => 'success',
                 'Error' => 'No Errors Found',
-            ],
+            
         ];
     }
+
 }
