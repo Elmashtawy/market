@@ -26,17 +26,17 @@ class IndexController extends Controller
           
 
           $latest_Category = Category::orderBy('id', 'desc')->limit(5)->get();
-          $latest_Product  = Product::orderBy('id', 'desc')->limit(5)->get();
+          $best_offers  = Product::orderBy('id', 'desc')->limit(5)->get();
           $Best_Selling    = Product::orderBy('selling', 'desc')->limit(5)->get();
 
           
           $cat  = CategoriesResource::collection($latest_Category);
-          $pro  = ProductsResource::collection($latest_Product);
+          $pro  = ProductsResource::collection($best_offers);
           $best = ProductsResource::collection($Best_Selling);
 
 
            $response['data'] = [ 'latest_Category'=>$cat,
-                                 'latest_Product'=>$pro,
+                                 'best_offers'=>$pro,
                                  'Best_Selling'=>$best ] ; 
            $response['See_All_Category']= url('api/categories');                        
            $response['See_All_Products']= url('api/products');                                  

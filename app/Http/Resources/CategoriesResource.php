@@ -20,6 +20,7 @@ class CategoriesResource extends JsonResource
         'id' => $this->id,
         'name' => $this->name,
         'description' => $this->description,
+        'photo' => $this->photo,
         'link' => url('api/products/'.$this->id),
         
         
