@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateCategoriesTable extends Migration
 {
@@ -20,6 +21,8 @@ class CreateCategoriesTable extends Migration
             $table->string('photo');
             $table->timestamps();
         });
+
+       
     }
 
     /**

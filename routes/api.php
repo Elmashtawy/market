@@ -17,6 +17,21 @@ use Illuminate\Http\Request;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function () {
+
+    Route::post('register', 'AuthController@register');
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
+});
+
 
 Route::get('/','api\IndexController@index' );
 Route::get('/categories','api\CategoryController@index' );
@@ -32,6 +47,6 @@ Route::get('/product/{id}','api\ProductController@show' );
 // Route::get('/order/{id}','api\OrderController@show');
 
 
-Route::get('/cart/{pid}','api\ProductController@store');
-Route::delete('/cart/delete/{pavoitId}','api\ProductController@destroy');
-Route::get('/showcart/{userId}','api\ProductController@showcart');
+Route::get('/cart/{pid}','api\ProductController@store')->middleware('auth:api');
+Route::delete('/cart/delete/{pavoitId}','api\ProductController@destroy')->middleware('auth:api');
+Route::get('/showcart/{userId}','api\ProductController@showcart')->middleware('auth:api');

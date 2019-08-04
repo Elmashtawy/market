@@ -33,3 +33,6 @@
 // Route::get('/cart/{pid}','api\ProductController@store');
 // // Route::delete('/cart/delete/{pavoitId}','api\ProductController@destroy');
 // Route::get('/showcart/{userId}','api\ProductController@showcart');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

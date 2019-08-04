@@ -15,16 +15,15 @@ class CategoriesResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
-
          return [
         'id' => $this->id,
         'name' => $this->name,
         'description' => $this->description,
         'photo' => $this->photo,
         'link' => url('api/products/'.$this->id),
-        
-        
+           
         ];
+
     }
 
     public function with($request)
@@ -35,6 +34,8 @@ class CategoriesResource extends JsonResource
                 'Status' => 'success',
                 'Error' => 'No Errors Found',
             ],
+
         ];
     }
+    
 }

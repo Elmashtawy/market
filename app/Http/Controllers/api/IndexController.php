@@ -14,6 +14,8 @@ use App\Product;
 
 class IndexController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +28,7 @@ class IndexController extends Controller
           
 
           $latest_Category = Category::orderBy('id', 'desc')->limit(5)->get();
-          $best_offers  = Product::orderBy('id', 'desc')->limit(5)->get();
+          $best_offers  = Product::orderBy('offer', 'desc')->limit(5)->get();
           $Best_Selling    = Product::orderBy('selling', 'desc')->limit(5)->get();
 
           
@@ -43,8 +45,8 @@ class IndexController extends Controller
            $response['See_All_BestSelling']= url('api/BestSelling');                               
            $response['error']= "Not Found Error";                                  
            $response['Status']= "Success";                                  
-          
-             return response($response,200);
+    return response()->json($response, 200, [],JSON_UNESCAPED_SLASHES);
+             // return response($response,200);
 
         }catch(\Exception $e){
 

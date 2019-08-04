@@ -144,7 +144,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store user and Product to Cart
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -158,10 +158,10 @@ class ProductController extends Controller
             $cart = new Cart;
     
             $cart->product_id = $id;
-            $cart->user_id = 1;
+            $cart->user_id = 2;
             $cart->save();
             
-            return redirect('api/showcart/1');
+            return redirect('api/showcart/2');
             
 
         }catch(\Exception $e){
@@ -182,7 +182,7 @@ class ProductController extends Controller
     public function showcart($userId){
         try{
 
-            return $product = new CartCollection(Cart::where('user_id', 1)->with('product')->get()
+            return $product = new CartCollection(Cart::where('user_id', 2)->with('product')->get()
         
         );
         }catch(\Exception $e){
@@ -229,7 +229,7 @@ class ProductController extends Controller
 
         $cartProduct->delete();
 
-        return redirect('api/showcart/1');
+        return redirect('api/showcart/2');
 
     }
 }
