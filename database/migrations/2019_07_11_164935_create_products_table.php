@@ -22,10 +22,10 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('quantity');
             $table->boolean('is_offer')->default(false);
-            $table->integer('offer');
-            $table->time('expire_offer');
-            $table->integer('selling');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->integer('offer')->nullable();
+            $table->dateTime('expire_offer')->nullable();
+            $table->integer('selling')->default(0);
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

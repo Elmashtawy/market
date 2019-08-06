@@ -15,7 +15,6 @@ $factory->define(Product::class, function (Faker $faker) {
         'price' => $faker->randomDigitNotNull,
         'quantity' => $faker->randomDigitNotNull,
         'offer' => $faker->randomDigitNotNull,
-        'expire_offer' => $faker->time($format = 'H:i:s', $max = 'now'),
         'selling' => $faker->randomDigitNotNull,
 
     ];
