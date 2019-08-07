@@ -9,6 +9,7 @@ $factory->define(Product::class, function (Faker $faker) {
     return [
         
         'category_id' => factory('App\Category')->create()->id,
+        'brand_id' => factory('App\Brand')->create()->id,
     	'name' => $faker->name,
         'description' => $faker->text,
         'photo' => $faker->word,

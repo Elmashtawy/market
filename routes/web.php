@@ -19,6 +19,7 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function() {
 		Route::resource('/index', 'dashboard\indexController');
 		Route::resource('/categories', 'dashboard\CategoresController');
 		Route::resource('/products', 'dashboard\productsController');
+		Route::resource('/brands', 'dashboard\BrandsController');
 
 	});
 

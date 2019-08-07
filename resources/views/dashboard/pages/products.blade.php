@@ -115,6 +115,22 @@
                           @enderror
                       </div>                      
                       <div class="form-group">
+                                  
+                        <label for="recipient-name" class="col-form-label">Brand Name:</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="Brand">
+
+                        @foreach( $Brands as $Brand )
+                            <option value="{{$Brand['id']}}">{{$Brand['name']}}</option>
+                        @endforeach
+
+                        </select>
+                        @error('Brands')
+                        <label class="text-danger"> {{ $message }}</label>
+                        @enderror
+                    </div>                      
+                    <div class="form-group">
+
+                      <div class="form-group">
                         <label for="message-text" class="col-form-label">Product Description:</label>
                         <textarea class="form-control" name="description" id="message-text"></textarea>
                                 @error('description')
@@ -154,6 +170,7 @@
                 <th>expire_offer</th>
                 <th>selling_number </th>
                 <th>CategoryName</th>
+                <th>BrandName</th>
                 <th>Edit</th>
                 <th>Delete</th>
                 
@@ -180,6 +197,7 @@
                 @endif
                 <td>{{$product['selling']}}</td>
                 <td>{{$product->category()->first()->name}}</td>
+                <td>{{$product->brands()->first()->name}}</td>
                 <td>
                             <!-- Start Form Edit Product -->
                            <button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#EditProduct{{$product['id']}}">Edit</button>
@@ -283,6 +301,21 @@
 
                                   </select>
                                   @error('Category')
+                                  <label class="text-danger"> {{ $message }}</label>
+                                  @enderror
+                              </div>                      
+                               <div class="form-group">
+                                  
+                                  <label for="recipient-name" class="col-form-label">Brand Name:</label>
+                                  <select class="form-control" id="exampleFormControlSelect1" name="Brand">
+
+                                  @foreach( $Brands as $Brand )
+                                      <option value="{{$Brand['id']}}">{{$Brand['name']}}</option>
+                                      <option value="{{$product['brand_id']}}" selected>{{$product->brands()->first()->name}}</option>
+                                  @endforeach
+
+                                  </select>
+                                  @error('Brands')
                                   <label class="text-danger"> {{ $message }}</label>
                                   @enderror
                               </div>                      

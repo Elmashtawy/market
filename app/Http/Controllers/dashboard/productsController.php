@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Category;
+use App\Brand;
 use Carbon\Carbon;
 
 class productsController extends Controller
@@ -19,7 +20,8 @@ class productsController extends Controller
     {
          $products = Product::all();
          $categories = Category::All();
-        return view('dashboard/pages/products',compact('products','categories'));
+         $Brands = Brand::All();
+        return view('dashboard/pages/products',compact('products','categories','Brands'));
     }
 
    
@@ -42,12 +44,12 @@ class productsController extends Controller
                              // 'Offer' => 'required|numeric',
                              // 'expire_offer' => 'required|date_format:Y-m-d|after:today',
                              'Category' => 'required|numeric',     
+                             'Brand' => 'required|numeric',     
                              'description' => 'required|max:100',
                              'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'   ]);
 
         $timestamp = Carbon::now();
         $date = Carbon::createFromFormat('Y-m-d H:i:s', $timestamp, 'Africa/Cairo');
-        
         $product = new Product();
         $product->name = $request->input('ProductName');
         $product->price = $request->input('prcie');
@@ -56,22 +58,24 @@ class productsController extends Controller
         $product->offer = $request->input('Offer');
         
         $expire_offer = $request->input('expire_offer') == null ? null : $date->now()->addDays($request->input('expire_offer'));
-
+        
         $product->expire_offer = $expire_offer;
-
+        
         $product->category_id = $request->input('Category');
+        $product->brand_id = $request->input('Brand');
         $product->description = $request->input('description');
-
+        
         // condition to check image is exist or not -> " nulable "
         if ($request->hasfile('image')) {
             $imageName = time().'.'.request()->image->getClientOriginalExtension();
             request()->image->move(public_path('Products_Image'), $imageName);
             $product->photo = $imageName;
         }else{
-
+            
             $product->photo = '';
         }
-
+        
+        
         $product->save();
         
         return redirect('/dashboard/products')->with('success','Product added');
@@ -96,6 +100,7 @@ class productsController extends Controller
                              // 'Offer' => 'required|numeric',
                              // 'expire_offer' => 'required|date_format:Y-m-d|after:today',
                              'Category' => 'required|numeric',     
+                             'Brand' => 'required|numeric',     
                              'description' => 'required|max:100',
                              'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'   ]);
 
@@ -119,6 +124,7 @@ class productsController extends Controller
         $product->expire_offer = $expire_offer;
 
         $product->category_id = $request->input('Category');
+        $product->brand_id = $request->input('Brand');
         $product->description = $request->input('description');
 
         // condition to check image is exist or not -> " nulable "

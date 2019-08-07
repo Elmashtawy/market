@@ -9,7 +9,7 @@
         <li><a href=""><i class="fa fa-users"></i> <span>Users</span></a></li>
         <li><a href="{{route('categories.index')}}"><i class="fa fa-users"></i> <span>Categories</span></a></li>
         <li><a href="{{route('products.index')}}"><i class="fa fa-users"></i> <span>Products</span></a></li>
-        <li><a href=""><i class="fa fa-users"></i> <span>Brands</span></a></li>
+        <li><a href="{{route('brands.index')}}"><i class="fa fa-users"></i> <span>Brands</span></a></li>
         <li><a href=""><i class="fa fa-users"></i> <span>Orders</span></a></li>
         
       </ul>

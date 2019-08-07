@@ -13,7 +13,7 @@ class Product extends Model
 
     public function brands()
     {
-        return $this->belongsToMany('App\Brand', 'product_brands', 'product_id', 'brand_id');
+        return $this->belongsTo('App\Brand', 'brand_id', 'id');
     }
 
     protected $fillable = [
