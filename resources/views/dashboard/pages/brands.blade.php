@@ -99,7 +99,7 @@
                 <td>{{$brand['id']}}</td>
                 <td>{{$brand['name']}}</td>
                 <td>{{str_limit($brand['description'],20)}}</td>
-                <td><a href="{{  asset('Categories_Image/' . $brand['photo']) }}">Show Photo</a>
+                <td><a href="{{  asset('Brands_Image/' . $brand['photo']) }}">Show Photo</a>
                 </td>
                 <td>
                        <!-- Start Form Edit brand -->
