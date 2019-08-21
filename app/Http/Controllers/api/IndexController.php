@@ -37,7 +37,7 @@ class IndexController extends Controller
           $best = ProductsResource::collection($Best_Selling);
 
 
-           $response['data'] = [ 'latest_Category'=>$cat,
+           $response['data'] = [ 'lateast_Category'=>$cat,
                                  'best_offers'=>$pro,
                                  'Best_Selling'=>$best ] ; 
            $response['See_All_Category']= url('api/categories');                        
